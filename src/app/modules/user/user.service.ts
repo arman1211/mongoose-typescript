@@ -11,8 +11,8 @@ const getAllUserFromDB = async () => {
   return result
 }
 
-const getAUserByIdFromDB = async (id: string) => {
-  const result = UserModel.findOne({ id })
+const getAUserByIdFromDB = async (userId: number) => {
+  const result = UserModel.findOne({ userId })
   return result
 }
 

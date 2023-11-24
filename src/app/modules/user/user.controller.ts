@@ -33,7 +33,7 @@ const getAllUser = async (req: Request, res: Response) => {
 
 const getAUserById = async (req: Request, res: Response) => {
   try {
-    const userId = req.params.userId
+    const userId = Number(req.params.userId)
     const result = await UserServices.getAUserByIdFromDB(userId)
     res.status(200).json({
       success: true,
