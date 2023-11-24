@@ -10,19 +10,22 @@ export type Address = {
   city: string
   country: string
 }
+export type fullName = {
+  firstName: string
+  lastName: string
+}
 
-export type Student = {
+//type for User
+
+export type User = {
   userId: number
   username: string
   password: string
-  fullName: {
-    firstName: string
-    lastName: string
-  }
+  fullName: fullName
   age: number
   email: string
   isActive: boolean
-  hobbies: [string]
+  hobbies: Array<string>
   address: Address
   orders: Orders
 }
