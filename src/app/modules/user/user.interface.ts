@@ -27,5 +27,5 @@ export type User = {
   isActive: boolean
   hobbies: Array<string>
   address: Address
-  orders: Orders
+  orders: Array<Orders>
 }

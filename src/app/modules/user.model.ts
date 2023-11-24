@@ -29,7 +29,7 @@ const userSchema = new Schema<User>({
   isActive: { type: Boolean },
   hobbies: { type: [String] },
   address: addressSchema,
-  orders: ordersSchema,
+  orders: [ordersSchema],
 })
 
 //model for User
