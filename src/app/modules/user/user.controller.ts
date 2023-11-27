@@ -167,10 +167,61 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 }
 
+//createOrder
+
+const AddOrderById = async (req: Request, res: Response) => {
+  try {
+    const userId = Number(req.params.userId)
+    const orderData = req.body
+
+    const user = await UserServices.getAUserByIdFromDB(userId)
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+        error: {
+          code: 404,
+          description: 'User not found!',
+        },
+      })
+    }
+
+    const result = await UserServices.AddAnOrderByIdIntoDB(userId, orderData)
+
+    if (!result.modifiedCount) {
+      return res.status(400).json({
+        success: false,
+        message: "Order didn't placed successfully",
+        error: {
+          code: 400,
+          description: "Order didn't placed successfully",
+        },
+      })
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Order created successfully!',
+      data: null,
+    })
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+      error: {
+        code: 404,
+        description: err.message,
+      },
+    })
+  }
+}
+
 export const UserController = {
   createUser,
   getAllUser,
   getAUserById,
   updateAUserById,
   deleteUser,
+  AddOrderById,
 }

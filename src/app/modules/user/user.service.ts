@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import config from '../../config'
 import { UserModel } from '../user.model'
-import { User } from './user.interface'
+import { Orders, User } from './user.interface'
 import bcrypt from 'bcrypt'
 
 const createUserIntoDB = async (userData: User) => {
@@ -45,10 +45,25 @@ const deleteUserByIdFromDB = async (userId: number) => {
   return result
 }
 
+//Add an order
+
+const AddAnOrderByIdIntoDB = async (userId: number, order: Orders) => {
+  const result = await UserModel.updateOne(
+    { userId },
+    { $push: { orders: order } },
+    {
+      runValidators: true,
+    },
+  )
+
+  return result
+}
+
 export const UserServices = {
   createUserIntoDB,
   getAllUserFromDB,
   getAUserByIdFromDB,
   updateAUserByIdFromDB,
   deleteUserByIdFromDB,
+  AddAnOrderByIdIntoDB,
 }
