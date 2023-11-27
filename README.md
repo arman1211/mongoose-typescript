@@ -107,3 +107,15 @@
   - method: `GET`
   - route: `/api/users/:userId/orders/`
   - params: pass `userId` as params
+
+## github link
+
+```git
+   https://github.com/arman1211/mongoose-typescript
+```
+
+## vercel link
+
+```
+    https://assignment-mongoose.vercel.app/
+```
