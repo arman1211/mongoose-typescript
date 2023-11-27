@@ -14,6 +14,8 @@ router.get('/', UserController.getAllUser)
 
 router.get('/:userId', UserController.getAUserById)
 
+router.get('/:userId/orders', UserController.getAllOrderById)
+
 router.delete('/:userId', UserController.deleteUser)
 
 export const UserRouter = router

@@ -59,6 +59,16 @@ const AddAnOrderByIdIntoDB = async (userId: number, order: Orders) => {
   return result
 }
 
+//get all orders
+const getAllOrderByIdFromDB = async (userId: number) => {
+  const result = await UserModel.aggregate([
+    { $match: { userId } },
+    { $project: { orders: 1, _id: 0 } },
+  ])
+
+  return result
+}
+
 export const UserServices = {
   createUserIntoDB,
   getAllUserFromDB,
@@ -66,4 +76,5 @@ export const UserServices = {
   updateAUserByIdFromDB,
   deleteUserByIdFromDB,
   AddAnOrderByIdIntoDB,
+  getAllOrderByIdFromDB,
 }
