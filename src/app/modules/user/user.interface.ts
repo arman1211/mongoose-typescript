@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose'
+import { Schema, model, connect, Model } from 'mongoose'
 
 export type Orders = {
   productName: string
@@ -28,4 +28,11 @@ export type User = {
   hobbies: Array<string>
   address: Address
   orders: Array<Orders>
+  isDeleted: boolean
 }
+
+export type UserMethod = {
+  isUserExists(id: number): Promise<User | null>
+}
+
+export type UserModels = Model<User, {}, UserMethod>
