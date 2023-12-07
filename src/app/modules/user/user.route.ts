@@ -4,13 +4,14 @@ import { UserController } from './user.controller'
 const router = express.Router()
 
 //will call user controller
-router.put('/:userId', UserController.updateAUserById)
-
-router.put('/:userId/orders', UserController.AddOrderById)
 
 router.post('/', UserController.createUser)
 
 router.get('/', UserController.getAllUser)
+
+router.put('/:userId', UserController.updateAUserById)
+
+router.put('/:userId/orders', UserController.AddOrderById)
 
 router.get('/:userId', UserController.getAUserById)
 

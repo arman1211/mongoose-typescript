@@ -12,16 +12,17 @@ const createUserIntoDB = async (userData: User) => {
     throw new Error('user already exists')
   }
   const result = await user.save()
+
   return result
 }
 
 const getAllUserFromDB = async () => {
-  const result = UserModel.find()
+  const result = await UserModel.find()
   return result
 }
 
 const getAUserByIdFromDB = async (userId: number) => {
-  const result = UserModel.findOne({ userId })
+  const result = await UserModel.findOne({ userId })
   return result
 }
 
@@ -41,7 +42,7 @@ const updateAUserByIdFromDB = async (userId: number, userData: User) => {
 }
 
 const deleteUserByIdFromDB = async (userId: number) => {
-  const result = UserModel.updateOne({ userId }, { isDeleted: true })
+  const result = await UserModel.updateOne({ userId }, { isDeleted: true })
   return result
 }
 

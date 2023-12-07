@@ -5,19 +5,20 @@ import userSchemaValidateJoi from './user.validation'
 import { User } from './user.interface'
 const createUser = async (req: Request, res: Response) => {
   try {
-    const { user: userData } = req.body
+    const userData = req.body
     const { error, value } = userSchemaValidateJoi.validate(userData)
 
     if (error) {
       res.status(500).json({
         success: false,
-        message: 'Something went wrong',
+        message: error.message || 'Something went wrong',
         error: error.details,
       })
     }
 
     //will call service
     const result = await UserServices.createUserIntoDB(value)
+
     //send response
     res.status(200).json({
       success: true,
@@ -28,7 +29,7 @@ const createUser = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: err.message || 'Something went wrong',
-      error: err,
+      error: err.details,
     })
   }
 }
@@ -56,7 +57,9 @@ const getAllUser = async (req: Request, res: Response) => {
 const getAUserById = async (req: Request, res: Response) => {
   try {
     const userId = Number(req.params.userId)
+    console.log(userId)
     const result = await UserServices.getAUserByIdFromDB(userId)
+    console.log(result)
     if (result) {
       res.status(200).json({
         success: true,
